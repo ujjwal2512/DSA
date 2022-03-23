@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 
-int solve(int idx, vector<int>&vec, int arr[], int s, int sum, int su) {
+int solve(int idx, int arr[], int s, int sum, int su) {
 	if (idx == s) {
 		if (su == sum) {
 			return 1;
@@ -10,12 +10,10 @@ int solve(int idx, vector<int>&vec, int arr[], int s, int sum, int su) {
 			return 0;
 		}
 	}
-	vec.push_back(arr[idx]);
 	su += arr[idx];
-	int l = solve(idx + 1, vec, arr, s, sum, su);
-	vec.pop_back();
+	int l = solve(idx + 1, arr, s, sum, su);
 	su -= arr[idx];
-	int r = solve(idx + 1, vec, arr, s, sum, su);
+	int r = solve(idx + 1, arr, s, sum, su);
 	return l + r;
 }
 int main() {
@@ -34,7 +32,6 @@ int main() {
 	}
 	int sum;
 	cin >> sum;
-	vector<int>v;
 	int su = 0;
 	cout << solve(0, v, a, n, sum, su);
 	return 0;
