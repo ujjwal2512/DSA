@@ -1,0 +1,45 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+void solve(int idx, vector<int>&vec, int arr[], int s, int sum, int su) {
+	if (idx == s) {
+		if (su == sum) {
+
+			for (int i = 0; i < vec.size(); i++) {
+				cout << vec[i] << " ";
+			}
+			cout << "\n";
+		}
+
+
+		return;
+	}
+	vec.push_back(arr[idx]);
+	su += arr[idx];
+	solve(idx + 1, vec, arr, s, sum, su);
+	vec.pop_back();
+	su -= arr[idx];
+	solve(idx + 1, vec, arr, s, sum, su);
+}
+int main() {
+#ifndef ONLINE_JUDGE
+	freopen("input1.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+#endif
+	int n;
+	cin >> n;
+	int a[n];
+	memset(a, 0, sizeof(a));
+	int x;
+	for (int i = 0; i < n; i++) {
+		cin >> x;
+		a[i] = x;
+	}
+	int sum;
+	cin >> sum;
+	vector<int>v;
+	int su = 0;
+	solve(0, v, a, n, sum, su);
+	return 0;
+}
