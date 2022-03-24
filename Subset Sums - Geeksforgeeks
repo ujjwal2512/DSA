@@ -1,0 +1,27 @@
+class Solution
+{
+public:
+void solve(int idx,vector<int>& a,int n,vector<int>& v,vector<int>& res,int s){
+    if(idx==n){
+        res.push_back(s);
+        return;
+    }
+    v.push_back(a[idx]);
+     s+=a[idx];
+    solve(idx+1,a,n,v,res,s);
+    v.pop_back();
+    s-=a[idx];
+    solve(idx+1,a,n,v,res,s);
+    
+}
+
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        // Write Your Code here
+        vector<int>ans;
+        vector<int>vec;
+        int sum=0;
+        solve(0,arr,N,vec,ans,sum);
+        return ans;
+    }
+};
