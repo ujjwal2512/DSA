@@ -1,0 +1,26 @@
+class Solution {
+public:
+    
+    void solve(int idx,vector<int>& arr,int sum,vector<int>& v,vector<vector<int>>& a){
+       
+            if(sum==0){
+                a.push_back(v);
+                return;
+            }
+        
+        for(int i=idx;i<arr.size();i++){
+            if(i>idx&&arr[i]==arr[i-1]) continue;
+            if(arr[i]>sum) break;
+            v.push_back(arr[i]);
+            solve(i+1,arr,sum-arr[i],v,a);
+            v.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        vector<vector<int>>ans;
+        vector<int>vec;
+        solve(0,candidates,target,vec,ans);
+        return ans;
+    }
+};
