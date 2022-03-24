@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void solve(int idx,vector<int>& n,vector<int>& v,vector<vector<int>>& res){
+  
+        res.push_back(v);
+        for(int i=idx;i<n.size();i++){
+        v.push_back(n[i]);
+        solve(i+1,n,v,res);
+        v.pop_back();
+        }
+    }
+    
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<vector<int>>ans;
+        vector<int>vec;
+        solve(0,nums,vec,ans);
+        return ans;
+    }
+};
